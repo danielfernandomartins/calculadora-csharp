@@ -1,0 +1,62 @@
+// Program.cs
+// Calculadora simples em C# (Console App)
+// Suporta expressões com + - * / e parênteses.
+// Para encerrar, digite "exit" ou "sair".
+
+using System;
+using System.Data; // Usado para DataTable.Compute()
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Calculadora C# - Console");
+        Console.WriteLine("Digite uma expressão (ex: 2+3*5) ou 'exit' para sair.");
+
+        while (true)
+        {
+            Console.Write("\n> ");
+            string input = Console.ReadLine()?.Trim();
+            if (string.IsNullOrEmpty(input)) continue;
+
+            if (input.Equals("exit", StringComparison.OrdinalIgnoreCase) ||
+                input.Equals("sair", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("Encerrando calculadora. Até mais!");
+                break;
+            }
+
+            // Substitui vírgula por ponto (caso o usuário use vírgula como decimal)
+            input = input.Replace(',', '.');
+
+            try
+            {
+                var result = EvaluateExpression(input);
+                Console.WriteLine($"= {result}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao avaliar expressão: {ex.Message}");
+            }
+        }
+    }
+
+    // Avalia expressões matemáticas simples usando DataTable.Compute.
+    // Observação: DataTable.Compute entende +, -, *, / e parênteses.
+    static string EvaluateExpression(string expr)
+    {
+        // Segurança básica: bloquear caracteres claramente indesejados
+        foreach (char c in expr)
+        {
+            if (!(char.IsDigit(c) || "+-*/()., ".Contains(c)))
+                throw new ArgumentException("Expressão contém caracteres inválidos.");
+        }
+
+        var table = new DataTable();
+        // DataTable.Compute retorna object; convertendo para double para formatação.
+        var valueObj = table.Compute(expr, "");
+        if (valueObj == null) throw new InvalidOperationException("Avaliação retornou nulo.");
+        double value = Convert.ToDouble(valueObj);
+        return value.ToString();
+    }
+}
