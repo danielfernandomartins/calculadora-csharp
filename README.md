@@ -1,11 +1,30 @@
-# Calculadora Console em C#
+# 🧮 Calculadora em C#
 
-Projeto simples de calculadora em console escrito em C#. Permite avaliar expressões matemáticas básicas com + - * / e parênteses.
+Aplicação de console criada para praticar lógica de programação e operações matemáticas em C#.
 
-## Como executar (dotnet CLI)
-1. Certifique-se de ter o .NET SDK instalado (ex.: .NET 6/7).
-2. No diretório do projeto:
-   ```bash
-   dotnet new console -n CalculadoraCs   # opcional: cria estrutura se quiser
-   # Substitua o Program.cs criado pelo código fornecido
-   dotnet run
+## Objetivo
+
+Estruturar um fluxo simples de entrada, processamento e saída de dados.
+
+## O que demonstra
+
+- Operadores matemáticos
+- Tratamento de entrada
+- Controle de fluxo
+- Organização básica de aplicação console
+
+## Tecnologia
+
+**C# • .NET**
+
+## Como explicar em entrevista
+
+> "Foi um projeto de fundamentos em C#. O objetivo era praticar a estrutura básica de uma aplicação console: receber dados, aplicar uma regra e devolver um resultado de forma organizada."
+
+## Papel no portfólio
+
+Registro de aprendizado inicial em C#.
+
+## Autor
+
+**Daniel Fernando Martins**
